@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,35 +8,87 @@ namespace ISS_Client
 {
     class RestClient
     {
-
-        static string path = "http://service1.jekobox.tk";
-        static HttpClient client = new HttpClient();
         
+       string path = "http://service1.jekobox.tk";
+       HttpClient client;
         
 
-        public static async Task<List<string>> getClassification(string message)
-        {
+       private static RestClient instance;
+
+        private RestClient() {
+            //Setup HttpClient basics
+            client = new HttpClient();
             client.BaseAddress = new Uri(path);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-
-            Console.WriteLine("Sending Message: " + message);
-            List<string> classes = null;
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/query?TextMessage", message);
-            var StringClasses = await response.Content.ReadAsAsync<List<string>>();
-            var test = response.Headers;
-            var test2 = response.StatusCode;
-            var test3 = response.Content;
-            Console.WriteLine("REST: "+ StringClasses + ", " + test.ToString()+ ", " + test2+ ", " + test3);
-
-            return null;
         }
 
-        public static async Task<Uri> train(Message m)
+
+        //Singleton
+        public static RestClient Instance
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("path", m);
-            return response.Headers.Location;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new RestClient();
+                }
+                return instance;
+            }
+        }
+
+        public static RestClient getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new RestClient();
+            }
+            else
+            {
+                return instance;
+            }
+            return instance;
+        }
+
+
+        public async Task<Message> getClassification(string subject, string message)
+        {
+
+            //query REST api for response
+            //Pretty Hardcoded
+
+            var values = new Dictionary<string, string>(){
+                { "TextMessage", message} };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync("api/query/", content);
+            //Read Response as JSON
+            var StringClasses = await response.Content.ReadAsStringAsync();
+
+            //Convert JSON string to a Message Object
+            dynamic ResponseMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<Message>(StringClasses);
+            Console.WriteLine(StringClasses);
+
+            //Set remaining variables of MessageObject
+            ResponseMessage.Text = message;
+            ResponseMessage.Subject = subject;
+            return ResponseMessage;
+        }
+
+
+
+        public async Task train(string Message, string Category)
+        {
+            var values = new Dictionary<string, string>(){
+                { "TextMessage", Message},
+                {"DesiredCategory",Category }};
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync("api/train/", content);
+            var StringClasses = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(StringClasses);
+            
+            
         }
 
 

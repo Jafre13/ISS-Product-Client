@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Jakob\documents\visual studio 2015\Projects\ISS-Client\ISS-Client\obj\Debug\
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\
 ISS_Client
 none
 false
 DEBUG;TRACE
-C:\Users\Jakob\documents\visual studio 2015\Projects\ISS-Client\ISS-Client\App.xaml
-11151548125
+C:\Code\ISS-Product-Client\ISS-Client\App.xaml
+2672698562
 
-71035193854
-691993368479
-MainWindow.xaml;
+9-1250058197
+69893323628
+MainWindow.xaml;TrainWindow.xaml;
 
 False
 

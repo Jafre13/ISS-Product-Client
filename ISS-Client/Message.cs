@@ -13,7 +13,10 @@ namespace ISS_Client
         //Work, Personal, Spam, Urgent
         public List<Boolean> Classes{ get; set; }
         public DateTime Created { get; set; }
-        public DateTime Scheduled { get; set; }
+        public string Subject { get; set; }
+        public String relevance_time { get; set; }
+        public string category { get; set; }
+        public int priority { get; set; }
 
         public Message()
         {

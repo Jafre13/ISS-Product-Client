@@ -18,3 +18,25 @@ C:\Users\Jakob\documents\visual studio 2015\Projects\ISS-Client\ISS-Client\bin\D
 C:\Users\Jakob\documents\visual studio 2015\Projects\ISS-Client\ISS-Client\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Jakob\documents\visual studio 2015\Projects\ISS-Client\ISS-Client\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\Jakob\documents\visual studio 2015\Projects\ISS-Client\ISS-Client\obj\Debug\ISS-Client.csprojResolveAssemblyReference.cache
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\ISS-Client.exe.config
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client.exe
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client.pdb
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\ISS-Client.exe
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\ISS-Client.pdb
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\Newtonsoft.Json.dll
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\System.Net.Http.Extensions.dll
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\System.Net.Http.Formatting.dll
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\System.Net.Http.Primitives.dll
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\Newtonsoft.Json.xml
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\System.Net.Http.Formatting.xml
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client.csprojResolveAssemblyReference.cache
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\MainWindow.g.cs
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\App.g.cs
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client_MarkupCompile.cache
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client_MarkupCompile.lref
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\MainWindow.baml
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client.g.resources
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS_Client.Properties.Resources.resources
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client.csproj.GenerateResource.Cache
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\TrainWindow.g.cs
+C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\TrainWindow.baml

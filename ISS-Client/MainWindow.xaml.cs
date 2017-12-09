@@ -17,29 +17,24 @@ using System.Windows.Shapes;
 
 namespace ISS_Client
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        //define Variables
+        //MyMessages = all messages in system
+        //StateMessages = Messages for Current State
+        //State = current State
         private ObservableCollection<Message> MyMessages { get; set; }
         private ObservableCollection<Message> StateMessages { get; set; }
-// ivate RestClient client { get; }
-
+        private string State { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-// client = new RestClient();
             MyMessages = new ObservableCollection<Message>();
             StateMessages = new ObservableCollection<Message>(MyMessages.ToArray());
-            //grid.ItemsSource = MyMessages;
-
-            MyMessages.Add(new Message("meeh", new List<bool>(new bool[] { true,false,false,false})));
-            MyMessages.Add(new Message("meeh1", new List<bool>(new bool[] { false, true,true,false})));
-            MyMessages.Add(new Message("meeh2", new List<bool>(new bool[] { true,false,true,true })));
-            Console.WriteLine(MyMessages.Count);
-            StateMessages = new ObservableCollection<Message>(MyMessages.ToArray());
+            State = "all";
+            
+            //Set datagrid to listen to StateMessages
             grid.ItemsSource = StateMessages;
         }
 
@@ -47,65 +42,71 @@ namespace ISS_Client
 
         private async void sendButton_Click(object sender, RoutedEventArgs e)
         {
-            Message m = new Message(textBox.Text, new List<bool>());
+
+            //Pull Text From TextBoxes
+            string text = textBox.Text;
+            string subject = subject_box.Text;
+            //Call Restclient and async wait response
+            Message m = await RestClient.getInstance().getClassification(subject,text);
+
+            //Add message to all message on update datagrid
             MyMessages.Add(m);
-            RestClient.getClassification(m.Text);
             updateMessages();
         }
 
         private void updateMessages()
         {
-            foreach (Message m in MyMessages)
+
+            //Clear StateMessages
+            StateMessages = new ObservableCollection<Message>();
+
+            //Populate state messages for current state
+            foreach (var m in MyMessages)
             {
-               // Console.WriteLine("" + m.Created.ToString());
+                if (m.category == State)
+                {
+                    StateMessages.Add(m);
+                }
+                else if (State == "all"){
+                    StateMessages = new ObservableCollection<Message>(MyMessages.ToArray());
+                }
+                
+
             }
+            grid.ItemsSource = StateMessages;
         }
 
         private void ChangeStateWorkClick(object sender, RoutedEventArgs e)
         {
-            StateMessages.Clear();
-            Console.WriteLine(MyMessages.Count);
-            foreach (var m in MyMessages)
-            {
-                Console.WriteLine("Classes" + m.Classes);
-                if (m.Classes[0] == true)
-                {
-                    Console.WriteLine("Found Work");
-                    StateMessages.Add(m);
-                }
-                
-            }
-            Console.WriteLine(StateMessages.Count);
-
-            grid.ItemsSource = StateMessages;
+            State = "work";
+            updateMessages();
+            
 
         }
 
         private void ChangeStatePersonalClick(object sender, RoutedEventArgs e)
         {
-            StateMessages = new ObservableCollection<Message>();
-            Console.WriteLine("ButtonClick");
-            foreach (var m in MyMessages)
-            {
-                if (m.Classes[1] == true)
-                {
-                    Console.WriteLine("Found Personal");
-                    StateMessages.Add(m);
-                }
-
-            }
-            Console.WriteLine(StateMessages.Count);
-            grid.ItemsSource = StateMessages;
+            State = "personal";
+            updateMessages();
 
         }
 
         private void ChangeStateAllClick(object sender, RoutedEventArgs e)
         {
+            State = "all";
             StateMessages = new ObservableCollection<Message>(MyMessages.ToArray());
             grid.ItemsSource = StateMessages;
 
         }
 
+        private void ReTrainClick(object sender, RoutedEventArgs e)
+        {
+            int index = grid.SelectedIndex;
+            string message = StateMessages[index].Text;
+            string subject = StateMessages[index].Subject;
+            TrainWindow TrainWindow = new TrainWindow(subject, message);
+            TrainWindow.Show();
+        }
     }
     
 }
