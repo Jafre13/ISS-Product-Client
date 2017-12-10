@@ -40,3 +40,5 @@ C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS_Client.Properties.Resources.
 C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\ISS-Client.csproj.GenerateResource.Cache
 C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\TrainWindow.g.cs
 C:\Code\ISS-Product-Client\ISS-Client\obj\Debug\TrainWindow.baml
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\MySql.Data.dll
+C:\Code\ISS-Product-Client\ISS-Client\bin\Debug\MySql.Data.xml

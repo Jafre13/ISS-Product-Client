@@ -107,6 +107,27 @@ namespace ISS_Client
             TrainWindow TrainWindow = new TrainWindow(subject, message);
             TrainWindow.Show();
         }
+
+        private async void DbTest(object sender, RoutedEventArgs e)
+        {
+            List<string> SpamResults = await DBConnector.getInstance().TrainSpam();
+            List<string> WorkResults= await DBConnector.getInstance().TrainWork();
+            List<string> UrgentResults = await DBConnector.getInstance().TrainUrgent();
+
+            foreach (string s in SpamResults)
+            {
+                await RestClient.getInstance().train(s, "spam");
+            }
+            foreach (string s in WorkResults)
+            {
+                await RestClient.getInstance().train(s, "work");
+            }
+            foreach (string s in UrgentResults)
+            {
+                await RestClient.getInstance().train(s, "urgent");
+            }
+
+        }
     }
     
 }
