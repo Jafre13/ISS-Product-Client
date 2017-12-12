@@ -26,8 +26,11 @@
             </TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Margin="20" Click="ChangeStateWorkClick">Work</Button>
-                <Button Margin="20" Click="ChangeStatePersonalClick">Personal</Button>
-                <Button Margin="20" Click="ChangeStateAllClick">All</Button>
+                <Button Margin="20" Click="ChangeStateUrgentClick">Urgent</Button>
+                <Button Margin="20" Click="ChangeStateSpamClick">Spam</Button>
+                <Button Margin="20" Click="ChangeStateMeetingClick">Meeting</Button>
+                <Button Margin="20" Click="ChangeStateContractClick">Contract</Button>
+                    <Button Margin="20" Click="ChangeStateAllClick">All</Button>
             </StackPanel>
             <DataGrid x:Name="grid" AutoGenerateColumns="False" ItemsSource="{Binding myMessages}" CanUserAddRows="False">
                 <DataGrid.Columns>

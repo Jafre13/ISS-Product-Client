@@ -18,9 +18,10 @@
         <TextBlock>Real Class:</TextBlock>
         <ComboBox x:Name="category_combobox">
             <ComboBoxItem Name="work">work</ComboBoxItem>
-            <ComboBoxItem Name="personal">personal</ComboBoxItem>
-            <ComboBoxItem Name="Spam">spam</ComboBoxItem>
-            <ComboBoxItem Name="Urgent">urgent</ComboBoxItem>
+            <ComboBoxItem Name="spam">personal</ComboBoxItem>
+            <ComboBoxItem Name="urgent">spam</ComboBoxItem>
+            <ComboBoxItem Name="meeting">urgent</ComboBoxItem>
+            <ComboBoxItem Name="contract">contract</ComboBoxItem>
         </ComboBox>
         <Button x:Name="send_train_button" Click="send_train_button_click">Train</Button>
     </StackPanel>

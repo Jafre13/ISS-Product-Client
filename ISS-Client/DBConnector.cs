@@ -59,7 +59,7 @@ namespace ISS_Client
         }
 
 
-        public async Task<List<string>> TrainSpam()
+        public List<string> TrainSpam()
         {
             List<string> results = new List<string>();
 
@@ -67,7 +67,7 @@ namespace ISS_Client
             //MySqlCommand comand = new MySqlCommand("Select body from message where subject like '%urgent%' limit 0,100",con);
 
             //work
-            MySqlCommand comand = new MySqlCommand("Select Column2 from book1", SpamCon);
+            MySqlCommand comand = new MySqlCommand("Select Column2 from book1 limit 1000", SpamCon);
 
            
             SpamCon.Open();
@@ -85,12 +85,12 @@ namespace ISS_Client
             //results.ForEach(i => Console.WriteLine("{0}\t", i));
             return results;
         }
-        public async Task<List<string>> TrainWork()
+        public List<string> TrainWork()
         {
             List<string> results = new List<string>();
 
             //urgent command
-            MySqlCommand comand = new MySqlCommand("Select body from message where subject like '%urgent%' OR '%important%'", EnronCon);
+            MySqlCommand comand = new MySqlCommand("Select body from message where subject NOT like '%urgent%' OR '%important%' limit 1000", EnronCon);
             EnronCon.Open();
             using (MySqlDataReader reader = comand.ExecuteReader())
             {
@@ -106,11 +106,11 @@ namespace ISS_Client
             //results.ForEach(i => Console.WriteLine("{0}\t", i));
             return results;
         }
-        public async Task<List<string>> TrainUrgent()
+        public List<string> TrainUrgent()
         {
             List<string> results = new List<string>();
 
-            MySqlCommand comand = new MySqlCommand("Select body from message where subject NOT like '%urgent%' OR '%important%'", EnronCon);
+            MySqlCommand comand = new MySqlCommand("Select body from message where subject like '%urgent%' OR '%important%' limit 1000", EnronCon);
 
 
             EnronCon.Open();
@@ -128,6 +128,52 @@ namespace ISS_Client
             //results.ForEach(i => Console.WriteLine("{0}\t", i));
             return results;
         }
+        public List<string> TrainMeeting()
+        {
+            List<string> results = new List<string>();
+
+            MySqlCommand comand = new MySqlCommand("Select body from message where subject like '%meeting%' limit 1000", EnronCon);
+
+
+            EnronCon.Open();
+            using (MySqlDataReader reader = comand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var result = reader["body"];
+                    results.Add(result.ToString());
+                }
+
+
+            }
+            EnronCon.Close();
+            //results.ForEach(i => Console.WriteLine("{0}\t", i));
+            return results;
+        }
+
+        public List<string> TrainContract()
+        {
+            List<string> results = new List<string>();
+
+            MySqlCommand comand = new MySqlCommand("Select body from message where subject like '%contract%' limit 1000", EnronCon);
+
+
+            EnronCon.Open();
+            using (MySqlDataReader reader = comand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var result = reader["body"];
+                    results.Add(result.ToString());
+                }
+
+
+            }
+            EnronCon.Close();
+            //results.ForEach(i => Console.WriteLine("{0}\t", i));
+            return results;
+        }
+
 
 
     }

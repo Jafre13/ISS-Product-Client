@@ -84,12 +84,31 @@ namespace ISS_Client
 
         }
 
-        private void ChangeStatePersonalClick(object sender, RoutedEventArgs e)
+        private void ChangeStateUrgentClick(object sender, RoutedEventArgs e)
         {
-            State = "personal";
+            State = "urgent";
             updateMessages();
 
         }
+        private void ChangeStateMeetingClick(object sender, RoutedEventArgs e)
+        {
+            State = "meeting";
+            updateMessages();
+        }
+
+            private void ChangeStateContractClick(object sender, RoutedEventArgs e)
+        {
+            State = "contract";
+            updateMessages();
+
+        }
+        private void ChangeStateSpamClick(object sender, RoutedEventArgs e)
+        {
+            State = "spam";
+            updateMessages();
+
+        }
+
 
         private void ChangeStateAllClick(object sender, RoutedEventArgs e)
         {
@@ -110,10 +129,17 @@ namespace ISS_Client
 
         private async void DbTest(object sender, RoutedEventArgs e)
         {
-            List<string> SpamResults = await DBConnector.getInstance().TrainSpam();
-            List<string> WorkResults= await DBConnector.getInstance().TrainWork();
-            List<string> UrgentResults = await DBConnector.getInstance().TrainUrgent();
+            List<string> SpamResults = DBConnector.getInstance().TrainSpam();
+            List<string> WorkResults=  DBConnector.getInstance().TrainWork();
+            List<string> UrgentResults =  DBConnector.getInstance().TrainUrgent();
+            List<string> MeetingResults =  DBConnector.getInstance().TrainMeeting();
+            List<string> ContractResults =  DBConnector.getInstance().TrainContract();
 
+            Console.WriteLine("SPAM" + SpamResults.Count);
+            Console.WriteLine("WORK" + WorkResults.Count);
+            Console.WriteLine("URGENT" + UrgentResults.Count);
+            Console.WriteLine("MEETING" + MeetingResults.Count);
+            Console.WriteLine("CONTRACT" + ContractResults.Count);
             foreach (string s in SpamResults)
             {
                 await RestClient.getInstance().train(s, "spam");
@@ -125,6 +151,14 @@ namespace ISS_Client
             foreach (string s in UrgentResults)
             {
                 await RestClient.getInstance().train(s, "urgent");
+            }
+            foreach (string s in MeetingResults)
+            {
+                await RestClient.getInstance().train(s, "meeting");
+            }
+            foreach (string s in ContractResults)
+            {
+                await RestClient.getInstance().train(s, "contract");
             }
 
         }
