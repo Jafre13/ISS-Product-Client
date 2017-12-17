@@ -11,9 +11,11 @@
             <TextBlock>Subject:</TextBlock>
             <TextBlock x:Name="train_subject"></TextBlock>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>Message:</TextBlock>
-            <TextBlock x:Name="train_message"></TextBlock>
+        <StackPanel Orientation="Horizontal" Width="300">
+                <TextBlock>Message:</TextBlock>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Width="200" Height="150" >
+                <TextBlock x:Name="train_message" TextAlignment ="Justify" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Stretch"></TextBlock>
+            </ScrollViewer>
         </StackPanel>
         <TextBlock>Real Class:</TextBlock>
         <ComboBox x:Name="category_combobox">

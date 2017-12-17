@@ -13,7 +13,7 @@
             <TextBlock Width="100" Height="30" VerticalAlignment="Center" TextAlignment="Center" FontSize="24"> Subject</TextBlock>
             <TextBox x:Name="subject_box" Width="450" Height="50" HorizontalAlignment="Center"></TextBox>
             <TextBlock Width="100" Height="30" TextAlignment="Center" FontSize="24" Margin="0,20,0,0">Message</TextBlock>
-            <TextBox x:Name="textBox" Width="450" Height="600" Margin="20"></TextBox>
+            <TextBox x:Name="textBox" Width="450" Height="600" Margin="20" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
             <Button x:Name="sendButton" Padding="10" Click="sendButton_Click">
                 Send
             </Button>
@@ -34,7 +34,7 @@
             </StackPanel>
             <DataGrid x:Name="grid" AutoGenerateColumns="False" ItemsSource="{Binding myMessages}" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Subject}" Header="Subject">
+                    <DataGridTextColumn MaxWidth="100" Binding="{Binding Subject}" Header="Subject">
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Created}" Header="Created">
                     </DataGridTextColumn>
